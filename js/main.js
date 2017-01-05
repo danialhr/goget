@@ -8,8 +8,8 @@ $('.start').on('click', function () {
 
 $('.reset').on('click', function () {
   $('.timer').text('Go!')
-    // reset()
-    remove()
+    reset()
+  remove()
   $('.reset').addClass('hide')
   countDown()
   callStartGame()
@@ -17,8 +17,7 @@ $('.reset').on('click', function () {
   $('.Mainboard').removeClass('hide')
 })
 
-
-function remove(){
+function remove () {
   $('.PlayerOneBox').removeClass('hide')
   $('.PlayerTwoBox').removeClass('hide')
   $('.oneA').removeClass('hide')
@@ -40,6 +39,7 @@ function callStartGame () {
   // $('.PlayerTwoScore').text(playerScore[1] * 10)
   boardRefresh()
 }
+
 
 var currentQuestion = 0
 
@@ -89,102 +89,100 @@ var boardRefresh = function () {
   $('.Six').text(gridNos[6])
   $('.Seven').text(gridNos[7])
   $('.Eight').text(gridNos[8])
-
 }
 
-  var userAnswer = []
-  var clickCounter = 0
+var userAnswer = []
+var clickCounter = 0
   // console.log(userAnswer)
 
 // User Clicks
-  $('.Box').click(function (event) {
-    if (clickCounter === 1) {
-      userAnswer.push($(this).text())
-      $('.twoA').text(userAnswer[1] + ' = ')
+$('.Box').click(function (event) {
+  if (clickCounter === 1) {
+    userAnswer.push($(this).text())
+    $('.twoA').text(userAnswer[1] + ' = ')
     // console.log($(this).text());
-      console.log(userAnswer)
-      gameState()
-      clickCounter = 0
-    }
-    else if (clickCounter === 0) {
-      userAnswer.push($(this).text())
-      $('.oneA').text(userAnswer[0])
+    console.log(userAnswer)
+    gameState()
+    clickCounter = 0
+  } else if (clickCounter === 0) {
+    userAnswer.push($(this).text())
+    $('.oneA').text(userAnswer[0])
     // console.log($(this).text());
-      clickCounter++
-      console.log(userAnswer)
-    }
-  })
-
-
-  function checkAnswer () {
-    if (userAnswer[0] * userAnswer[1] === currentQuestion) {
-      return true
-    } else {
-      return false
-    }
+    clickCounter++
+    console.log(userAnswer)
   }
+})
 
-  function gameState () {
-    if (checkAnswer() === true) {
+function checkAnswer () {
+  if (userAnswer[0] * userAnswer[1] === currentQuestion) {
+    return true
+  } else {
+    return false
+  }
+}
+
+function gameState () {
+  if (checkAnswer() === true) {
+    clearInterval(timer)
+    console.log('Correct Answer')
+    userAnswer = []
+    boardRefresh()
+    countDown()
+    $('.oneA').text(' _ ')
+    $('.twoA').text(' _ =')
+    if (currentPlayer === 1) {
+      playerScore[0] = playerScore[0] + 1
+      $('.PlayerOneScore').text(playerScore[0] * 10)
+    } else if (currentPlayer !== 1) {
+      playerScore[1] = playerScore[1] + 1
+      gameOver()
+      // whoWins()
+      $('.PlayerTwoScore').text(playerScore[1] * 10)
+    } console.log(playerScore)
+  } else {
+    console.log('Wrong Answer')
+    if (currentPlayer !== 1) {
       clearInterval(timer)
-      console.log('Correct Answer')
+      alert('Game Over')
+      gameOver()
+      whoWins()
+    } else if (currentPlayer === 1) {
       userAnswer = []
       boardRefresh()
       countDown()
       $('.oneA').text(' _ ')
       $('.twoA').text(' _ =')
-      if (currentPlayer === 1) {
-        playerScore[0] = playerScore[0] + 1
-        $('.PlayerOneScore').text(playerScore[0] * 10)
-      } else if (currentPlayer !== 1) {
-          playerScore[1] = playerScore[1] + 1
-        $('.PlayerTwoScore').text(playerScore[1] * 10)
-      }  console.log(playerScore)
-    } else {
-      console.log('Wrong Answer')
-      if (currentPlayer !== 1) {
-        alert('Game Over')
-        whoWins()
-        clearInterval(timer)
-      } else if (currentPlayer === 1){
-        userAnswer = []
-        boardRefresh()
-        countDown()
-        $('.oneA').text(' _ ')
-        $('.twoA').text(' _ =')
-        switchPlayer()
-      }
-
+      switchPlayer()
     }
   }
+}
 
-  function switchPlayer() {
-    currentPlayer = 2
+function switchPlayer () {
+  currentPlayer = 2
   $('.whosTURN').text("Player's Two Turn")
   boardRefresh()
   countDown()
-    alert("It's Players Two Turn")
-  }
+  alert("It's Players Two Turn")
+}
 
-  function whoWins () {
-    $('.PlayerOneBox').addClass('hide')
-    $('.PlayerTwoBox').addClass('hide')
-    $('.oneA').addClass('hide')
-    $('.Operations').addClass('hide')
-    $('.twoA').addClass('hide')
-    $('.timer').addClass('hide')
-    $('.DisplayEquation').addClass('hide')
-    $('.Mainboard').addClass('hide')
-    $('.reset').removeClass('hide')
-    if (playerScore[0] < playerScore[1]) {
-      $('.whosTURN').text('Player Two Wins')
-    } else if (playerScore[0] === playerScore[1]) {
-      $('.whosTURN').text("It's a Draw")
-    } else if (playerScore[0] > playerScore[1]) {
-      $('.whosTURN').text('Player One Wins')
-    }
+function whoWins () {
+  $('.PlayerOneBox').addClass('hide')
+  $('.PlayerTwoBox').addClass('hide')
+  $('.oneA').addClass('hide')
+  $('.Operations').addClass('hide')
+  $('.twoA').addClass('hide')
+  $('.timer').addClass('hide')
+  $('.DisplayEquation').addClass('hide')
+  $('.Mainboard').addClass('hide')
+  $('.reset').removeClass('hide')
+  if (playerScore[0] < playerScore[1]) {
+    $('.whosTURN').text('Player Two Wins')
+  }else if (playerScore[0] === playerScore[1]) {
+    $('.whosTURN').text("It's a Draw")
+  } else if (playerScore[0] > playerScore[1]) {
+    $('.whosTURN').text('Player One Wins')
   }
-
+}
 
 var timer = []
 var countDown = function () {
@@ -210,14 +208,24 @@ var countDown = function () {
   })()
 }
 
-
-function reset(){
-  currentPlayer = 1 // player 1 or 2
+function reset () {
   playerScore = [0, 0] // playerScore[0] is player 1, playerScore[1] is player 2
-  $('.DisplayEquation').removeClass('hide')
-  $('.Mainboard').removeClass('hide')
   $('.PlayerOneScore').text(0)
   $('.PlayerTwoScore').text(0)
+  $('.oneA').text(' _ ')
+  $('.twoA').text(' _ =')
+  userAnswer =[]
+}
+
+var gameOver = function () {
+  if (playerScore[0] < playerScore[1]) {
+    clearInterval(timer)
+    alert('Player Two Wins')
+    whoWins()
+    playerScore[0,0]
+    $('.PlayerOneScore').text(0)
+    $('.PlayerTwoScore').text(0)
+  }
 }
 
 //
