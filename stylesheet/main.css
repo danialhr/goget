@@ -1,0 +1,125 @@
+body {
+  background-image: url(http://www.siwallpaperhd.com/wp-content/uploads/2016/09/chalk_blackboard_wallpaper_for_desktop.jpg);
+  /*font-family: 'Delius Unicase', cursive;*/  font-family: 'Montserrat', sans-serif;
+  color: white;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.whosTURN {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100px;
+  width: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+
+}
+.Operations {
+  display: flex;
+  height: auto;
+  width: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  padding: 15px;
+}
+
+.Playerboard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  text-align: center;
+  height: 70px;
+  width: auto;
+  margin-top: 25px;
+  margin: 10px;
+  top: auto;
+  left: 500px;
+  /*border: 1px solid black ;*/
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+
+.PlayerOne-Box {
+  height: 50px;
+  width: 200px;
+  font-size: 20px;
+  /*border: 1px solid black ;*/
+}
+
+.PlayerTwo-Box {
+  height: 50px;
+  width: 200px;
+  font-size: 20px;
+  /*border: 1px solid black ;*/
+}
+
+.timer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 130px;
+  width: 100%;
+  font-size: 75px;
+  /*border: 1px solid black ;*/
+}
+.Box {
+  height: 100px;
+  width:  100px;
+  margin: 10px;
+  background-color: #3e3e3e;
+  border-color: black;
+  border-radius: 50px;
+  transition: all 0.5s ease;
+  line-height: 100px;
+  text-align: center;
+  font-size: 48px;
+  color: white;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.Display-Equation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 80px;
+  width: auto;
+  font-size: 60px;
+  /*border: 1px solid black ;*/
+}
+
+
+.Result {
+  padding: 15px;
+}
+
+.start{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 50px;
+  width: 100px;
+  border-radius: 50px;
+  font-size: 30px;
+  text-align: center;
+}
+
+
+.hide {
+  display: none;
+}
